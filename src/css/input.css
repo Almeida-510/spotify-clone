@@ -1,1 +1,29 @@
 @import "tailwindcss";
+
+
+@theme {
+
+    /* font-size */
+    --text-9xl: 9rem;
+
+    /* spacing */
+    --spacing-14: 3.5rem;
+    --spacing-125px: 125px;
+
+    /* background images */
+    --background-image-spotify-theme: url(../img/bursts.svg);
+    --background-image-spotify-theme-mobile: url(../img/bursts-mobile.svg);
+
+    /* background size */
+    --background-size-175: 175%;
+    --background-size-195: 195%;
+
+    /*background position*/
+    --background-position-banner: 46% 4%;
+    --background-position-banner-mobile: top 25% center;
+
+    /* colors */
+    --color-hoverspt: #18d760;
+    --color-purple-main: #2d46b9;
+    --color-green-main: #1ed760;
+}
