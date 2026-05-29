@@ -11,11 +11,20 @@
     --color-black: #000;
     --color-white: #fff;
     --spacing: 0.25rem;
+    --container-xl: 36rem;
+    --container-4xl: 56rem;
+    --text-sm: 0.875rem;
+    --text-sm--line-height: calc(1.25 / 0.875);
+    --text-lg: 1.125rem;
+    --text-lg--line-height: calc(1.75 / 1.125);
     --text-5xl: 3rem;
     --text-5xl--line-height: 1;
     --text-9xl: 9rem;
     --text-9xl--line-height: 1;
     --font-weight-bold: 700;
+    --tracking-widest: 0.1em;
+    --default-transition-duration: 150ms;
+    --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
     --spacing-125px: 125px;
@@ -23,6 +32,7 @@
     --background-image-spotify-theme-mobile: url(../img/bursts-mobile.svg);
     --background-size-175: 175%;
     --background-position-banner: 46% 4%;
+    --background-position-banner-mobile: top 25% center;
     --color-hoverspt: #18d760;
     --color-purple-main: #2d46b9;
     --color-green-main: #1ed760;
@@ -219,6 +229,12 @@
   .w-full {
     width: 100%;
   }
+  .max-w-4xl {
+    max-width: var(--container-4xl);
+  }
+  .max-w-xl {
+    max-width: var(--container-xl);
+  }
   .flex-1 {
     flex: 1;
   }
@@ -246,6 +262,9 @@
   .justify-end {
     justify-content: flex-end;
   }
+  .rounded-full {
+    border-radius: calc(infinity * 1px);
+  }
   .border {
     border-style: var(--tw-border-style);
     border-width: 1px;
@@ -260,8 +279,8 @@
   .bg-black {
     background-color: var(--color-black);
   }
-  .bg-green-500 {
-    background-color: var(--color-green-500);
+  .bg-green-main {
+    background-color: var(--color-green-main);
   }
   .bg-purple-main {
     background-color: var(--color-purple-main);
@@ -275,17 +294,20 @@
   .bg-position-\(--background-position-banner\) {
     background-position: var(--background-position-banner);
   }
-  .bg-position-\(--banner-mobile\) {
-    background-position: var(--banner-mobile);
-  }
-  .bg-position-\[var\(--banner-mobile\)\] {
-    background-position: var(--banner-mobile);
+  .bg-position-\(--background-position-banner-mobile\) {
+    background-position: var(--background-position-banner-mobile);
   }
   .px-3 {
     padding-inline: calc(var(--spacing) * 3);
   }
   .px-4 {
     padding-inline: calc(var(--spacing) * 4);
+  }
+  .px-10 {
+    padding-inline: calc(var(--spacing) * 10);
+  }
+  .py-3 {
+    padding-block: calc(var(--spacing) * 3);
   }
   .py-4 {
     padding-block: calc(var(--spacing) * 4);
@@ -300,15 +322,33 @@
     font-size: var(--text-5xl);
     line-height: var(--tw-leading, var(--text-5xl--line-height));
   }
+  .text-sm {
+    font-size: var(--text-sm);
+    line-height: var(--tw-leading, var(--text-sm--line-height));
+  }
+  .leading-none {
+    --tw-leading: 1;
+    line-height: 1;
+  }
   .font-bold {
     --tw-font-weight: var(--font-weight-bold);
     font-weight: var(--font-weight-bold);
   }
+  .tracking-widest {
+    --tw-tracking: var(--tracking-widest);
+    letter-spacing: var(--tracking-widest);
+  }
   .text-green-main {
     color: var(--color-green-main);
   }
+  .text-purple-main {
+    color: var(--color-purple-main);
+  }
   .text-white {
     color: var(--color-white);
+  }
+  .uppercase {
+    text-transform: uppercase;
   }
   .underline {
     text-decoration-line: underline;
@@ -316,6 +356,22 @@
   .outline {
     outline-style: var(--tw-outline-style);
     outline-width: 1px;
+  }
+  .transition {
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to, opacity, box-shadow, transform, translate, scale, rotate, filter, -webkit-backdrop-filter, backdrop-filter, display, content-visibility, overlay, pointer-events;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+  .duration-500 {
+    --tw-duration: 500ms;
+    transition-duration: 500ms;
+  }
+  .hover\:bg-white {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-white);
+      }
+    }
   }
   .hover\:text-hoverspt {
     &:hover {
@@ -344,16 +400,6 @@
       background-image: var(--background-image-spotify-theme);
     }
   }
-  .md\:bg-size-\(--background-\) {
-    @media (width >= 48rem) {
-      background-size: var(--background-);
-    }
-  }
-  .md\:bg-size-\(--background-size\) {
-    @media (width >= 48rem) {
-      background-size: var(--background-size);
-    }
-  }
   .md\:bg-size-\(--background-size-175\) {
     @media (width >= 48rem) {
       background-size: var(--background-size-175);
@@ -362,21 +408,6 @@
   .md\:bg-position-\(--background-position-banner\) {
     @media (width >= 48rem) {
       background-position: var(--background-position-banner);
-    }
-  }
-  .md\:bg-position-\(--background-positionbanner\) {
-    @media (width >= 48rem) {
-      background-position: var(--background-positionbanner);
-    }
-  }
-  .md\:bg-position-\(--backgroundbanner\) {
-    @media (width >= 48rem) {
-      background-position: var(--backgroundbanner);
-    }
-  }
-  .md\:bg-position-\(--banner\) {
-    @media (width >= 48rem) {
-      background-position: var(--banner);
     }
   }
   .md\:px-20 {
@@ -388,6 +419,12 @@
     @media (width >= 48rem) {
       font-size: var(--text-9xl);
       line-height: var(--tw-leading, var(--text-9xl--line-height));
+    }
+  }
+  .md\:text-lg {
+    @media (width >= 48rem) {
+      font-size: var(--text-lg);
+      line-height: var(--tw-leading, var(--text-lg--line-height));
     }
   }
 }
@@ -416,7 +453,15 @@
   inherits: false;
   initial-value: solid;
 }
+@property --tw-leading {
+  syntax: "*";
+  inherits: false;
+}
 @property --tw-font-weight {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-tracking {
   syntax: "*";
   inherits: false;
 }
@@ -424,6 +469,10 @@
   syntax: "*";
   inherits: false;
   initial-value: solid;
+}
+@property --tw-duration {
+  syntax: "*";
+  inherits: false;
 }
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
@@ -434,8 +483,11 @@
       --tw-skew-x: initial;
       --tw-skew-y: initial;
       --tw-border-style: solid;
+      --tw-leading: initial;
       --tw-font-weight: initial;
+      --tw-tracking: initial;
       --tw-outline-style: solid;
+      --tw-duration: initial;
     }
   }
 }
